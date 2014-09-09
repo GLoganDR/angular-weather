@@ -1,0 +1,19 @@
+h2 {{title}}
+
+.row
+  .col-xs-3
+    h4 Get Local Weather Conditions
+    form(role='form', novalidate, name='conditionsForm')
+      .form-group
+        label(for='zip') Zip Code
+        input.form-control#zip(type='text', ng-pattern='/^[0-9]{5}$/', ng-model='zip', min='5', max='5', required, autofocus)
+      button.btn.btn-success(type='submit', ng-show='conditionsForm.$valid', ng-click='getConditions()') Get Weather
+  .col-xs-9
+.row(ng-show='conditions')
+  .col-xs-3
+    .panel.panel-default
+      .panel-body
+        h4 {{conditions.temp_f}} &deg;F
+        img(ng-src='{{conditions.icon_url}}')
+        p {{conditions.relative_humidity}}
+  .col-xs-9

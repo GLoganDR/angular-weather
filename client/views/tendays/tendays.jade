@@ -1,0 +1,21 @@
+.row
+  .col-xs-12
+    h3 {{title}}
+.row
+  .col-xs-3
+    form(novalidate, name='forecastForm', role='form')
+      .form-group
+        label(for='zip') Zip Code
+        input.form-control#zip(name='zip', type='text', ng-model='zip', ng-pattern='/^[0-9]{5}$/', required, autofocus)
+      .form-group
+        button.btn.btn-success(ng-show='forecastForm.$valid', ng-click='get10Day()') Get Forecast
+  .col-xs-9
+.row(ng-show='forecasts')
+  .col-xs-12
+    .panel.panel-default
+      .panel-body
+        .forecast(ng-repeat='forecast in forecasts')
+          img(ng-src='{{forecast.icon_url}}')
+          p {{forecast.high.fahrenheit}} &deg;F
+          p {{forecast.low.fahrenheit}} &deg;F
+          p {{forecast.avewind.mph}} mph
